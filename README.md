@@ -2,7 +2,7 @@
 
 Terraform module to configure Docker Swarm mode firewall rules on DigitalOcean. Based on the [Docker documentation](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts).
 
-[![CircleCI](https://circleci.com/gh/thojkooi/terraform-digitalocean-docker-swarm-firewall/tree/master.svg?style=svg)](https://circleci.com/gh/thojkooi/terraform-digitalocean-docker-swarm-firewall/tree/master)
+[![CircleCI](https://circleci.com/gh/sancer/terraform-digitalocean-docker-swarm-firewall/tree/master.svg?style=svg)](https://circleci.com/gh/sancer/terraform-digitalocean-docker-swarm-firewall/tree/master)
 
 ---
 
@@ -21,7 +21,7 @@ resource "digitalocean_tag" "worker" {
 }
 
 module "swarm-cluster" {
-    source            = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+    source            = "github.com/sancer/terraform-digitalocean-docker-swarm-mode"
     total_managers    = 3
     total_workers     = 5
     domain            = "do.example.com"
@@ -33,7 +33,7 @@ module "swarm-cluster" {
 }
 
 module "swarm-firewall" {
-    source              = "github.com/thojkooi/terraform-digitalocean-swarm-firewall"
+    source              = "github.com/sancer/terraform-digitalocean-swarm-firewall"
     do_token            = "${var.do_token}"
     prefix              = "my-project"
     cluster_tags        = ["${digitalocean_tag.manager.id}", "${digitalocean_tag.worker.id}"]
